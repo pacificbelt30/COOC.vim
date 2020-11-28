@@ -10,12 +10,12 @@
 "GetComMoziNE関数に設定する文字はGetComMozi関数のエスケープ文字を抜いたやつを入力する
 "コメントアウト関数
 "二重読み込み回避
-if exists('g:loaded_coocvim')
+if exists('g:loaded_COOCvim')
   finish
 endif
-let g:loaded_coocvim = 1
+let g:loaded_COOCvim = 1
 "コメントアウトコマンドを定義
-command! -nargs=? CommentOut call cooc#Com(<f-args>)
+command! -nargs=? CommentOut call COOC#Com(<f-args>)
 "Space+cでコメントアウト
 "nnoremap <Space>f :CommentOut<CR>
 "n<Spacs>cでn行分コメントアウト
@@ -24,11 +24,11 @@ command! -nargs=? CommentOut call cooc#Com(<f-args>)
 "endfor
 "コメントアウトアウトコマンドを定義
 "n<Space>Cでn行分コメントアウトアウト
-command! -range -nargs=0 UnCommentOut <line1>,<line2> call cooc#Ucom()
+command! -range -nargs=0 UnCommentOut <line1>,<line2> call COOC#Ucom()
 "Space+Cでコメントアウトアウト
 nnoremap <Space>F :UnCommentOut<CR>
 vnoremap <Space>F :UnCommentOut<CR>
 "rangeの使い方がわかってない(range回繰り返してるだけ？)"
-command! -range -nargs=0 SCO <line1>,<line2>call cooc#SwitchCom()
+command! -range -nargs=0 SCO <line1>,<line2>call COOC#SwitchCom()
 nnoremap <Space>f :SCO<CR>
 vnoremap <Space>f :SCO<CR>
