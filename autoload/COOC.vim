@@ -1,4 +1,4 @@
-function! cooc#Com(...)
+function! COOC#Com(...)
   let filenum = line("$") - line(".")
   let num = 0
   let currentLine = line(".")
@@ -11,8 +11,8 @@ function! cooc#Com(...)
     let num = line("$") - line(".")
   endif
   "exec ":UnCommentOut " . l:num . "<CR>"
-  let ex = cooc#GetComMozi()
-  let exr = cooc#GetRegComMozi()
+  let ex = COOC#GetComMozi()
+  let exr = COOC#GetRegComMozi()
   if l:ex == ""
     return 0
   endif
@@ -21,7 +21,7 @@ function! cooc#Com(...)
   exec ":" . a:firstline . ",+" . l:jf . "s/^ *\\zs".l:exr."\\ze.*$/".l:ex
 endfunction
 "コメントアウトアウト？
-function! cooc#Ucom(...)
+function! COOC#Ucom(...)
   let filenum = line("$") - line(".")
   let num = 0
   if a:0>0
@@ -32,7 +32,7 @@ function! cooc#Ucom(...)
   if filenum <= 0
     let num = line("$") - line(".")
   endif
-  let exr = cooc#GetRegComMozi()
+  let exr = COOC#GetRegComMozi()
   if l:exr == ""
     return 0
   endif
@@ -40,7 +40,7 @@ function! cooc#Ucom(...)
 endfunction
 "引数の文字列はダブルクォーテーションマークをつけないといけない
 "各拡張子に対応するコメントアウト文字を取得する
-function! cooc#GetComMozi()
+function! COOC#GetComMozi()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\\/\\/"
@@ -54,7 +54,7 @@ function! cooc#GetComMozi()
     return ""
   endif
 endfunction
-function! cooc#GetComMoziNE()
+function! COOC#GetComMoziNE()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\/\/"
@@ -69,7 +69,7 @@ function! cooc#GetComMoziNE()
   endif
 endfunction
 "各拡張子に対応するコメントアウト文字を正規表現で取得する
-function! cooc#GetRegComMozi()
+function! COOC#GetRegComMozi()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\\/*"
@@ -85,7 +85,7 @@ function! cooc#GetRegComMozi()
 endfunction
 "すでにコメントアウトされている行か確認
 "コメントアウトされている場合は1(true)"
-function! cooc#IsCommentOut()
+function! COOC#IsCommentOut()
   let co = 1
   let ge = 0
   while 1
@@ -94,9 +94,9 @@ function! cooc#IsCommentOut()
     endif
     let l:ge = l:ge + 1
   endwhile
-  for n in range(strlen(cooc#GetComMoziNE()))
+  for n in range(strlen(COOC#GetComMoziNE()))
     let tmp = l:ge + n 
-    if getline(".")[l:tmp] != cooc#GetComMoziNE()[n]
+    if getline(".")[l:tmp] != COOC#GetComMoziNE()[n]
       let l:co = 0
       break
     endif
@@ -104,14 +104,14 @@ function! cooc#IsCommentOut()
   return l:co
 endfunction
 "コメントアウト実行"
-function! cooc#SwitchCom()
+function! COOC#SwitchCom()
   if a:lastline - a:firstline <=0
     if IsCommentOut() == 1
-      exec ":call cooc#Ucom()"
+      exec ":call COOC#Ucom()"
     else
-      exec ":call cooc#Com()"
+      exec ":call COOC#Com()"
     endif
   else
-    exec "call cooc#Com()"
+    exec "call COOC#Com()"
   endif
 endfunction
