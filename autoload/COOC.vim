@@ -106,7 +106,7 @@ endfunction
 "コメントアウト実行"
 function! COOC#SwitchCom()
   if a:lastline - a:firstline <=0
-    if IsCommentOut() == 1
+    if COOC#IsCommentOut() == 1
       exec ":call COOC#Ucom()"
     else
       exec ":call COOC#Com()"
