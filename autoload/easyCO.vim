@@ -44,7 +44,7 @@ function! easyCO#GetComMozi()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\\/\\/"
-  elseif l:ex == "tex"
+  elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
     return "%"
   elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
     return "#"
@@ -58,7 +58,7 @@ function! easyCO#GetComMoziNE()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\/\/"
-  elseif l:ex == "tex"
+  elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
     return "%"
   elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
     return "#"
@@ -73,7 +73,7 @@ function! easyCO#GetRegComMozi()
   let ex = expand("%:e")
   if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
     return "\\/*"
-  elseif l:ex == "tex"
+  elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
     return "%*"
   elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
     return "#*"
