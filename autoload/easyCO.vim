@@ -3,7 +3,7 @@
 " coMoziNE:コメントアウト文字(?)
 " extention:対応するファイルの拡張子(そのうちfiletype判定にする)
 let g:COList = [
-\  {"coMozi":"\\/\\/","coRegMozi":"\\/\\/","coMoziNE":"\/\/","extention":["c","cpp","h","cxx","hpp","java","cs","php","js"],"filetype":["c","cpp","h","cxx","hpp","java","cs","php","js"]},
+\  {"coMozi":"\\/\\/","coRegMozi":"\\/\\/","coMoziNE":"\/\/","extention":["c","cpp","h","cxx","hpp","java","cs","php","js"],"filetype":["c","cpp","h","cxx","hpp","java","cs","php","javascript"]},
 \  {"coMozi":"#","coRegMozi":"#","coMoziNE":"#","extention":["py","rb","sh"],"filetype":["python","ruby","sh"]},
 \  {"coMozi":"%","coRegMozi":"%","coMoziNE":"%","extention":["tex","sty","m"],"filetype":["tex"]},
 \  {"coMozi":"\"","coRegMozi":"\"","coMoziNE":"\"","extention":["vim"],"filetype":["vim"]}]
