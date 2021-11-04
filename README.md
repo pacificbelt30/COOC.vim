@@ -7,10 +7,13 @@ Plug "Shougo/context_filetype"
 ```
 
 # DEMO
-![DEMO](https://raw.githubusercontent.com/wiki/pacificbelt30/easyCO.vim/images/easyCO.gif)
+![DEMO](https://user-images.githubusercontent.com/57101176/140297543-422968eb-92bf-4df3-a454-bdaa6241692c.gif)
 # Copyright
 see ./LICENSE
 ```txt
 Guard object of logger for debugging.
 Copyright (c) 2020 pacificbelt30 
 ```
+
+# Usage
+
