@@ -28,7 +28,6 @@ function! easyCO#Com(...)
   let jf = a:firstline - a:lastline
   "exec ":" . l:currentLine . ",+" . l:num . "s/^\\zs".l:exr."\\ze.*$/".l:ex
   exec ":" . a:firstline . ",+" . l:jf . "s/^ *\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex
-  "let test = substitute(val,"\\","/","g")
 endfunction
 "コメントアウトアウト？
 function! easyCO#Ucom(...)
@@ -69,17 +68,6 @@ function! easyCO#GetComMozi()
     "endfor
   "endfor
   return ""
-  "if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
-    "return "\\/\\/"
-  "elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
-    "return "%"
-  "elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
-    "return "#"
-  "elseif l:ex == "vim"
-    "return "\""
-  "else
-    "return ""
-  "endif
 endfunction
 function! easyCO#GetComMoziNE()
   let currentFileType = g:context_filetype#get_filetype()
@@ -100,17 +88,6 @@ function! easyCO#GetComMoziNE()
     "endfor
   "endfor
   return ""
-  "if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
-    "return "\/\/"
-  "elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
-    "return "%"
-  "elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
-    "return "#"
-  "elseif l:ex == "vim"
-    "return "\""
-  "else
-    "return ""
-  "endif
 endfunction
 "各拡張子に対応するコメントアウト文字を正規表現で取得する
 function! easyCO#GetRegComMozi()
@@ -132,17 +109,6 @@ function! easyCO#GetRegComMozi()
     "endfor
   "endfor
   return ""
-  "if l:ex == "c" || l:ex == "h" || l:ex == "cpp" || l:ex == "cxx" || l:ex == "hpp" || l:ex == "java" || l:ex == "cs" || l:ex == "php" || l:ex == "js"
-    "return "\\/*"
-  "elseif l:ex == "tex" || l:ex == "sty" || l:ex == "m"
-    "return "%*"
-  "elseif l:ex == "py" || l:ex == "rb" || l:ex == "sh"
-    "return "#*"
-  "elseif l:ex == "vim"
-    "return "\"*"
-  "else
-    "return ""
-  "endif
 endfunction
 "すでにコメントアウトされている行か確認
 "コメントアウトされている場合は1(true)"
