@@ -7,45 +7,46 @@ let g:COList = [
 \  {"coMozi":"#","coRegMozi":"#","coMoziNE":"#","extention":["py","rb","sh"],"filetype":["python","ruby","sh"]},
 \  {"coMozi":"%","coRegMozi":"%","coMoziNE":"%","extention":["tex","sty","m"],"filetype":["tex"]},
 \  {"coMozi":"\"","coRegMozi":"\"","coMoziNE":"\"","extention":["vim"],"filetype":["vim"]}]
-function! easyCO#Com(...)
-  let filenum = line("$") - line(".")
+function! easyCO#Com(...) range
+  "let filenum = line("$") - line(".")
   let num = 0
-  let currentLine = line(".")
-  if a:0 >0
-    let num = a:1-1
-    let filenum -= (a:1-1)
+  "let currentLine = line(".")
+  if a:0>0 " 引数ありの場合 (firstline,lastline)
+    let first = a:1
+    let num = a:2-a:1
+  else
+    let first = a:firstline
+    let num = a:lastline - a:firstline
   endif
   let ex = expand("%:e")
-  if filenum <= 0
-    let num = line("$") - line(".")
-  endif
   "exec ":UnCommentOut " . l:num . "<CR>"
   let ex = easyCO#GetComMozi()
-  let exr = easyCO#GetRegComMozi()
-  if l:ex == ""
-    return 0
-  endif
-  let jf = a:firstline - a:lastline
-  "exec ":" . l:currentLine . ",+" . l:num . "s/^\\zs".l:exr."\\ze.*$/".l:ex
-  exec ":" . a:firstline . ",+" . l:jf . "s/^ *\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex
-endfunction
-"コメントアウトアウト？
-function! easyCO#Ucom(...)
-  let filenum = line("$") - line(".")
-  let num = 0
-  if a:0>0
-    let num = a:1-1
-    let filenum -= (a:1-1)
-  endif
-  let ex = expand("%:e")
-  if filenum <= 0
-    let num = line("$") - line(".")
-  endif
   let exr = easyCO#GetRegComMozi()
   if l:exr == ""
     return 0
   endif
-  exec ":,+" . l:num . "s/^ *\\zs".l:exr."\\ze//"
+  "exec ":" . l:currentLine . ",+" . l:num . "s/^\\zs".l:exr."\\ze.*$/".l:ex
+  exec ":" . l:first . ",+" . l:num . "s/^ *\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex
+  "echo "行".l:first ."から". l:num . "行コメントアウトしました"
+endfunction
+"コメントアウトアウト？
+function! easyCO#Ucom(...) range
+  "let filenum = line("$") - line(".")
+  let num = 0
+  if a:0>0 " 引数ありの場合 (firstline,lastline)
+    let first = a:1
+    let num = a:2-a:1
+  else
+    let first = a:firstline
+    let num = a:lastline - a:firstline
+  endif
+  let ex = expand("%:e")
+  let exr = easyCO#GetRegComMozi()
+  if l:exr == ""
+    return 0
+  endif
+  exec ":" . l:first ",+" . l:num . "s/^ *\\zs".l:exr."\\ze//"
+  "echo "行".l:first ."から". l:num . "行コメントを外しました"
 endfunction
 "引数の文字列はダブルクォーテーションマークをつけないといけない
 "各拡張子に対応するコメントアウト文字を取得する
@@ -131,14 +132,29 @@ function! easyCO#IsCommentOut()
   return l:co
 endfunction
 "コメントアウト実行"
-function! easyCO#SwitchCom()
-  if a:lastline - a:firstline <=0
+function! easyCO#SwitchCom() range
+  echo a:firstline . ' ' . a:lastline
+  if a:lastline - a:firstline <= 0
     if easyCO#IsCommentOut() == 1
-      exec ":call easyCO#Ucom()"
+      exec ":call easyCO#Ucom(" . a:firstline . "," . a:lastline . ")"
     else
-      exec ":call easyCO#Com()"
+      exec ":call easyCO#Com(" . a:firstline . "," . a:lastline . ")"
     endif
   else
-    exec ":call easyCO#Com()"
+    exec ":call easyCO#Com(" . a:firstline . "," . a:lastline . ")"
   endif
 endfunction
+
+" オペレータとしてのコメントアウト
+function! easyCO#OPCom(...)
+  let first =line("'[")
+  let last =line("']")
+  exec ":call easyCO#Com(" . l:first . "," . l:last . ")"
+endfunction
+function! easyCO#OPUCom(...)
+  let first =line("'[")
+  let last =line("']")
+  exec ":call easyCO#UCom(" . l:first . "," . l:last . ")"
+endfunction
+
+

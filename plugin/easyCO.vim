@@ -29,6 +29,9 @@ command! -range -nargs=0 UnCommentOut <line1>,<line2> call easyCO#Ucom()
 nnoremap <Space>F :UnCommentOut<CR>
 vnoremap <Space>F :UnCommentOut<CR>
 "rangeの使い方がわかってない(range回繰り返してるだけ？)"
+"command! -nargs=0 SCO <line1>,<line2>call easyCO#SwitchCom()
 command! -range -nargs=0 SCO <line1>,<line2>call easyCO#SwitchCom()
 nnoremap <Space>f :SCO<CR>
 vnoremap <Space>f :SCO<CR>
+nnoremap <silent> <Space><Space>f :set opfunc=easyCO#OPCom<CR>g@
+nnoremap <silent> <Space><Space>F :set opfunc=easyCO#OPUCom<CR>g@
