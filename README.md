@@ -26,9 +26,14 @@ Copyright (c) 2020 pacificbelt30
 ```
 
 # Usage
+The basic usage is to type `<Space>f` on the line you want to comment out or uncomment.
 | Command        | Description |
 | ---            | ---         |
-| `CommentOut`   | Comments out the specified line.  The key mapping is assigned nothing. |
-| `UnCommentOut` | UnComments out the specified line.  The key mapping is assigned to `<Space>F`. |
-| `SCO`          | Uncomment the specified line if it is commented out, or comment it out if it is not.  If a visual mode or number is specified, the range will be commented out.  The key mapping is assigned to `<Space>f`. |
+| `:CommentOut`   | Comments out the specified line.  The key mapping is assigned nothing. |
+| `:UnCommentOut` | UnComments out the specified line.  The key mapping is assigned to `<Space>F`. |
+| `:SCO`          | Uncomment the specified line if it is commented out, or comment it out if it is not.  If a visual mode or number is specified, the range will be commented out.  The key mapping is assigned to `<Space>f`. |
 
+## use in Operrator 
+The operator can also be used to perform comment out.
+The default value is assigned to `<Space><Space>f`, so after entering it, you can specify a range of text objects, such as `i{`, to comment out the text within that range.
+If you want to uncomment the text, use `<Space><Space>F`.

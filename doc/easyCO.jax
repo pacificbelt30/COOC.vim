@@ -1,0 +1,127 @@
+*easyCO.txt*	日本語ヘルプ
+
+Version :
+Author  :
+License : MIT license  {{{
+    Permission is hereby granted, free of charge, to any person obtaining
+    a copy of this software and associated documentation files (the
+    "Software"), to deal in the Software without restriction, including
+    without limitation the rights to use, copy, modify, merge, publish,
+    distribute, sublicense, and/or sell copies of the Software, and to
+    permit persons to whom the Software is furnished to do so, subject to
+    the following conditions:
+    The above copyright notice and this permission notice shall be included
+    in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+    OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+    IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+    CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+    SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+}}}
+
+==============================================================================
+目次						*easyCO-contents*
+
+概要				|easyCO-introduction|
+使い方				|easyCO-usage|
+インターフェイス		|easyCO-interface|
+  変数				  |easyCO-variables|
+  コマンド			  |easyCO-commands|
+  キーマッピング		  |easyCO-key-mappings|
+  関数				  |easyCO-functions|
+TODO				|easyCO-todo|
+更新履歴			|easyCO-changelog|
+
+
+==============================================================================
+概要						*easyCO-introduction*
+
+*easyCO* はかんたんにコメントアウトができる機能を提供するプラグインです．
+
+最新版:
+https://github.com/pacificbelt30/easyCO.vim
+
+
+==============================================================================
+使い方						*easyCO-usage*
+	基本的にはコメントアウトをしたい行で<Space>fを押すだけでその行をコメントアウトすることができる．
+	同様にすでにコメントアウトされているものを外したい場合にもその行にカーソルを合わせ<Space>fを押す．
+	ヴィジュアルモードでの選択にも対応していてコメントアウトしたい行をヴィジュアルモードで選択し，<Space>fを押すと複数行がコメントアウトされる．
+	逆にヴィジュアルモードの選択範囲でコメントアウトを外したい場合は選択後<Space>Fを押す．
+
+	新しい機能としてオペレータとしてコメントアウトを実行することができるようになった．オペレータ実行のキーマッピングは<Space><Space>fに割り当てられているため，
+	<Space><Space>fのあとにi{などテキストオブジェクトを指定することでその範囲に対してコメントアウトを実行できる．
+
+
+==============================================================================
+インターフェイス				*easyCO-interface*
+
+------------------------------------------------------------------------------
+変数						*easyCO-variables*
+
+g:COList					*g:COList*
+	既定値: = [  {"coMozi":"\\/\\/","coRegMozi":"\\/\\/","coMoziNE":"\/\/","extention":["c","cpp","h","cxx","hpp","java","cs","php","js"],"filetype":["c","cpp","h","cxx","hpp","java","cs","php","javascript"]},  {"coMozi":"#","coRegMozi":"#","coMoziNE":"#","extention":["py","rb","sh"],"filetype":["python","ruby","sh"]},  {"coMozi":"%","coRegMozi":"%","coMoziNE":"%","extention":["tex","sty","m"],"filetype":["tex"]},  {"coMozi":"\"","coRegMozi":"\"","coMoziNE":"\"","extention":["vim"],"filetype":["vim"]}]
+
+
+g:context_filetype#get_filetype		*g:context_filetype#get_filetype*
+
+
+------------------------------------------------------------------------------
+コマンド					*easyCO-commands*
+
+:CommentOut [{}]				*:CommentOut*
+	コメントアウトを実行するコマンド(現在不使用)(reference: easyCO#Com)
+
+:UnCommentOut					*:UnCommentOut*
+	コメントアウトを外すコマンド(reference: easyCO#Ucom)
+
+:SCO						*:SCO*
+	その行のコメントの状態によってコメントアウトを行ったり，コメントアウトを外したりするコマンド(reference: easyCO#SwitchCom)
+
+------------------------------------------------------------------------------
+キーマッピング					*easyCO-key-mappings*
+
+------------------------------------------------------------------------------
+関数						*easyCO-functions*
+
+easyCO#Com({...})				*easyCO#Com()*
+	指定行をコメントアウトする関数
+
+easyCO#GetComMozi()				*easyCO#GetComMozi()*
+	コメントアウトに使う文字を取得する関数
+
+easyCO#GetComMoziNE()				*easyCO#GetComMoziNE()*
+	コメントアウトを外すために使う正規表現を取得する関数
+
+easyCO#GetRegComMozi()				*easyCO#GetRegComMozi()*
+	正規表現でのコメントアウト文字を取得する関数
+
+easyCO#IsCommentOut()				*easyCO#IsCommentOut()*
+	現在の行がコメントアウトされているかを判定する関数
+
+easyCO#OPCom({...})				*easyCO#OPCom()*
+	オペレータとしてのコメントアウト関数
+
+easyCO#OPUCom({...})				*easyCO#OPUCom()*
+	オペレータとしてのコメントアウトを外すための関数
+
+easyCO#SwitchCom()				*easyCO#SwitchCom()*
+	行の状態によってコメントアウトとコメントアウト外しを交互に実行する関数
+
+easyCO#Ucom({...})				*easyCO#Ucom()*
+	指定行のコメントを外す関数
+
+==============================================================================
+TODO						*easyCO-todo*
+
+
+
+==============================================================================
+更新履歴					*easyCO-changelog*
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:noet:fen:
