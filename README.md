@@ -3,7 +3,7 @@ easy comment out plugin for vim
 # instlation
 If you are using vim-plug:
 ```vim
-Plug "pacificbelt30/easyCO.vim"
+Plug 'pacificbelt30/easyCO.vim'
 ```
 
 you are using something else, I don't know.
@@ -12,7 +12,7 @@ you are using something else, I don't know.
 You will need to install [context_filetype](https://github.com/Shougo/context_filetype.vim) to determine the filetype.
 If you are using vim-plug:
 ```vim
-Plug "Shougo/context_filetype"
+Plug "Shougo/context_filetype.vim"
 ```
 
 # DEMO
