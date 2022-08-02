@@ -8,6 +8,7 @@ let g:COList = [
 \  {"coMozi":"%","coRegMozi":"%","coMoziNE":"%","extention":["tex","sty","m"],"filetype":["tex"]},
 \  {"coMozi":"--","coRegMozi":"--","coMoziNE":"--","extention":["vim","lua"],"filetype":["lua"]},
 \  {"coMozi":"\"","coRegMozi":"\"","coMoziNE":"\"","extention":["vim"],"filetype":["vim"]}]
+let g:MoziAfterSpace = 1
 function! easyCO#Com(...) range
   "let filenum = line("$") - line(".")
   let num = 0
@@ -27,7 +28,11 @@ function! easyCO#Com(...) range
     return 0
   endif
   "exec ":" . l:currentLine . ",+" . l:num . "s/^\\zs".l:exr."\\ze.*$/".l:ex
-  exec ":" . l:first . ",+" . l:num . "s/^ *\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex
+  if g:MoziAfterSpace
+    exec ":" . l:first . ",+" . l:num . "s/^\\s*\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex." "
+  else
+    exec ":" . l:first . ",+" . l:num . "s/^\\s*\\zs\\(".l:exr."\\|\\)\\ze.*$/".l:ex.""
+  endif
   "echo "行".l:first ."から". l:num . "行コメントアウトしました"
 endfunction
 "コメントアウトアウト？
@@ -46,7 +51,7 @@ function! easyCO#Ucom(...) range
   if l:exr == ""
     return 0
   endif
-  exec ":" . l:first ",+" . l:num . "s/^ *\\zs".l:exr."\\ze//"
+  exec ":" . l:first ",+" . l:num . "s/^ *\\zs".l:exr."\\s*\\ze//"
   "echo "行".l:first ."から". l:num . "行コメントを外しました"
 endfunction
 "引数の文字列はダブルクォーテーションマークをつけないといけない
