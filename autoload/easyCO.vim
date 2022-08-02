@@ -6,6 +6,7 @@ let g:COList = [
 \  {"coMozi":"\\/\\/","coRegMozi":"\\/\\/","coMoziNE":"\/\/","extention":["c","cpp","h","cxx","hpp","java","cs","php","js"],"filetype":["c","cpp","h","cxx","hpp","java","cs","php","javascript"]},
 \  {"coMozi":"#","coRegMozi":"#","coMoziNE":"#","extention":["py","rb","sh"],"filetype":["python","ruby","sh"]},
 \  {"coMozi":"%","coRegMozi":"%","coMoziNE":"%","extention":["tex","sty","m"],"filetype":["tex"]},
+\  {"coMozi":"--","coRegMozi":"--","coMoziNE":"--","extention":["vim","lua"],"filetype":["lua"]},
 \  {"coMozi":"\"","coRegMozi":"\"","coMoziNE":"\"","extention":["vim"],"filetype":["vim"]}]
 function! easyCO#Com(...) range
   "let filenum = line("$") - line(".")
