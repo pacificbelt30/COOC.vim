@@ -139,7 +139,7 @@ function! easyCO#IsCommentOut()
 endfunction
 "コメントアウト実行"
 function! easyCO#SwitchCom() range
-  echo a:firstline . ' ' . a:lastline
+  "echo a:firstline . ' ' . a:lastline
   if a:lastline - a:firstline <= 0
     if easyCO#IsCommentOut() == 1
       exec ":call easyCO#Ucom(" . a:firstline . "," . a:lastline . ")"
